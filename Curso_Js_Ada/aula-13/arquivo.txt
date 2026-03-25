@@ -1,0 +1,3 @@
+nome: Lara
+Idade: 21
+Peso: 82.5
