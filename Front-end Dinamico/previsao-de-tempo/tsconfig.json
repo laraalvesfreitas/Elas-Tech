@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "rootDir": "./ts",
+    "outDir": "./js",
+
+    "target": "es2016",
+    "module": "commonjs",
+
+    "strict": true,
+
+    "sourceMap": false,
+    "declaration": false,
+    "declarationMap": false,
+
+    "esModuleInterop": true,
+
+    "skipLibCheck": true
+  },
+  "include": ["ts"],
+  "exclude": ["node_modules", "js"]
+}
