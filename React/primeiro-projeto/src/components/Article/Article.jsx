@@ -11,7 +11,7 @@ export class Article extends React.Component{
     render(){
         return(
             <article id="article">
-                <img src={this.props.thumbnail} alt={this.props.title} id="imgArticle1" />
+                <img src={this.props.thumbnail} alt={this.props.title} id="articleImg" />
 
                 <div className="article-infos">
 

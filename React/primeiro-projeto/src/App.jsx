@@ -1,57 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './styles/App.css'
 import { Navbar } from "./components/Navbar/Navbar";
 import { Article } from "./components/Article/Article";
-
-import  article1Img from './assets/images/article1.png'
-import article2Img from './assets/images/article2.png'
-import article3Img from './assets/images/article3.png'
-import { Counter } from "./components/Counter/Counter";
+import { ThreeDots } from 'react-loader-spinner'
+import axios from "axios";
 
 // Componente em classe é uma classe que herda a classe componente do React, e retorna um HTML dentro de um método render
-class App extends React.Component {
+  function  App () {
+    const [news, setNews] = useState([]);
+
+    useEffect(() => {
+      async function loadNews() {
+        const response =  await axios.get(
+          'https://api.spaceflightnewsapi.net/v4/articles/'
+        );
+
+        const newsData = response.data;
+
+        console.log(newsData)
+        setNews(newsData.results)
+      }
+      loadNews()
+    }, [])
+
+
+
   // Método Responsável por renderizar o conteúdo HTML do nosso componente
-   render(){
     return (
       <>
         <Navbar/>
 
-      <Counter/>
+      
+
+      {/* <Counter/> */}
 
 
 
-        {/* <section id="articles">
-        <Article 
-        title = 'Designing Dashboards' 
-        provider = 'NASA' 
-        description = 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
-        thumbnail = {article1Img}/>
+         <section id="articles">
+          {news.length === 0 ? (
+            <div style={{height:'400px', width: '100%', display:'flex', justifyContent:'center', alignItems:'center'}}>
+               <ThreeDots
+                  height="80"
+                  width="80"
+                  color="white"
+                  ariaLabel="audio-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="wrapper-class"
+                  visible={true}
+                  />
+                  </div>) : news.map((article) => {
+            return(
+              <Article 
+                article = {article.id}
+                title = {article.title} 
+                provider = {article.news_site} 
+                description = {article.summary}
+                thumbnail = {article.image_url}/>
+            )
+          })}
+        
 
-        <Article 
-        title = 'Vibrant Portraits of 2020'  
-        provider = 'SpaceNews'
-        description = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos consequuntur velit veritatis possimus minima non, nisi, quae assumenda necessitatibus quis iusto! Dolore delectus accusamus provident maiores harum animi. Amet, in?'
-        thumbnail = {article2Img}/>
-
-
-
-        <Article 
-        title = '36 Days of Malayalam type' 
-        provider = 'Spaceflight Now'
-        description = 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
-        thumbnail = {article3Img}/>
-
-        <Article 
-          title = 'Designing Dashboards' 
-          provider = 'NASA'
-          description = 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
-          thumbnail = {article1Img}/>
-        </section> */}
+        </section> 
 
     </>
     )
    }
-}
+
 
 export default App;
+
+
+
 
