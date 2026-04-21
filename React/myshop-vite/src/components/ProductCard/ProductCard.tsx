@@ -1,16 +1,27 @@
 import { FiShoppingCart } from 'react-icons/fi'
 import *  as S from './styles'
-export const ProductCard: React.FC = () =>{
+import type { Product } from '../../data/products';
+import { FaStar, FaRegStar } from "react-icons/fa";
+
+
+interface ProductCardProps{
+    product: Product;
+}
+
+export const ProductCard: React.FC <ProductCardProps>= ({product}) =>{
     return(
 
         <S.Card>
 
-            <S.ProductImage  src= "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png" alt= ""/>
-            <S.ProductTitle>Mens Casual Premium Slite Fit T-shirts </S.ProductTitle>
+            <S.ProductImage  src= {product.image} alt= {product.description}/>
+            <S.ProductTitle>{product.title} </S.ProductTitle>
 
             <S.ReviewPriceContainer>
-                <S.Review>4.1</S.Review>
-                <S.Price>$22.30</S.Price>
+                <S.Review>
+                    { Array.from({ length: 5 }).map((_, index) =>index < Math.round(product.rating.rate) ? ( <FaStar key={index} />) : ( <FaRegStar key={index} />))}
+                    ({` ${product.rating.rate}`})
+                </S.Review>
+                <S.Price>${product.price}</S.Price>
 
             </S.ReviewPriceContainer>
 
