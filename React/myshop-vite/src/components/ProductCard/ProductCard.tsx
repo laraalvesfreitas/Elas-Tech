@@ -19,7 +19,7 @@ export const ProductCard: React.FC <ProductCardProps>= ({product}) =>{
             <S.ReviewPriceContainer>
                 <S.Review>
                     { Array.from({ length: 5 }).map((_, index) =>index < Math.round(product.rating.rate) ? ( <FaStar key={index} />) : ( <FaRegStar key={index} />))}
-                    ({` ${product.rating.rate}`})
+                    ({`  ${product.rating.rate}`})
                 </S.Review>
                 <S.Price>${product.price}</S.Price>
 
