@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as  S from './styles'
 import type { RootReducer } from '../../redux/root-reducer'
 import { FaRegTrashAlt } from "react-icons/fa";
+import { removeProduct } from '../../redux/Cart/cart-slice';
 
 interface CartProps{
     showCart: boolean
@@ -25,7 +26,7 @@ export const Cart: React.FC<CartProps> = ({showCart}) =>{
 
                 {cart.map(product => (
                     <S.CartProductItem key={product.id}><strong>{product.title}</strong> - ${product.price}
-                    <S.ButtonRemoveProduct onClick={() => dispatch({type: 'cart/remove-product', payload: product})}><FaRegTrashAlt /></S.ButtonRemoveProduct>
+                    <S.ButtonRemoveProduct onClick={() =>     dispatch(removeProduct(product)) }><FaRegTrashAlt /></S.ButtonRemoveProduct>
                     </S.CartProductItem>
 
                 ))}

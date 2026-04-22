@@ -4,6 +4,7 @@ import type { Product } from '../../data/products';
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootReducer } from '../../redux/root-reducer';
+import { addProduct, removeProduct } from '../../redux/Cart/cart-slice';
 
 
 interface ProductCardProps{
@@ -19,19 +20,15 @@ export const ProductCard: React.FC <ProductCardProps>= ({product}) =>{
    const isProductOnCart = cart.find(productOnCart => product.id === productOnCart.id) !== undefined;
 
   function  handleAddProductToCart(){
-    dispatch({
-        type: 'cart/add-product',
-        payload: product,
-    })
+        dispatch(addProduct(product))
+
   }
 
 
   function handleRemoveProductfromCart(){
-        dispatch({
-            type: 'cart/remove-product',
-            payload: product,
+    dispatch(removeProduct(product))
+        
 
-        })
     }
 
     return(
