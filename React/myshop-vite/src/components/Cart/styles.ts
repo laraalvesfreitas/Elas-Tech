@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 interface ContainerProps{
         showCart: boolean
 
@@ -22,3 +23,33 @@ transition: right 0.5s;
 
 export const Title = styled.h1``
 
+export const CartProductsList = styled.ul`
+padding: 2rem 0;
+list-style: none;
+
+display: flex;
+flex-direction: column;
+gap: 1rem;
+`
+
+export const CartProductItem = styled.li`
+
+`
+
+export const CartTotal = styled.strong`
+`
+
+export const ButtonRemoveProduct = styled.button`
+
+border: none;
+padding: 0 1rem;
+background-color: white;
+margin: 0 auto;
+
+
+
+ svg{
+    font-size: 1rem;
+}
+
+`
